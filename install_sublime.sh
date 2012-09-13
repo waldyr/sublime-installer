@@ -1,10 +1,16 @@
-#!/bin/sh
+#!/bin/bash
 
 ############################################################
-# Sublime Text 2.0.1 Installer                             #
+# Sublime Installer                                        #
 # Author:  Waldyr G. Araújo de Souza <waldyr.ar@gmail.com> #
 # Licence: MIT                                             #
 ############################################################
+
+echo "#######################################"
+echo "########## Sublime Installer ##########"
+echo "#######################################"
+
+echo
 
 version="Sublime 2.0.1"
 
@@ -12,27 +18,22 @@ cd /tmp
 
 krnl=$(uname -i)
 
-# Check wether 64 or 32 bit kernel and download the correct version;
-if [ $krnl = 'i386' ] ; then # 32
-  wget -NP /tmp/ http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.tar.bz2
-else # 64
-  wget -NP /tmp/ http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2
+echo "Downloading $version, please wait..."
+if [ $krnl = 'i386' ] ; then
+  wget -qNP /tmp/ http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.tar.bz2
+else
+  wget -qNP /tmp/ http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2
 fi
 
-# Extract the tar.bz2 and make linked symbol;
-tar vxjf /tmp/Sublime*.tar.bz2
+echo "Extracting $version, please wait..."
+tar xjf /tmp/Sublime*.tar.bz2
 sudo cp -aR /tmp/Sublime\ Text\ 2 /opt/
 
-echo "Would you like another $version icon [y/n]?"
-read ans
-if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ] ; then
-  wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/sublime_text.png -q -O /opt/Sublime\ Text\ 2/Icon/256x256/sublime_text.png
-fi
-
+echo "Creating $version terminal shortcut"
 rm -r /tmp/Sublime\ Text\ 2*
 sudo ln -sf /opt/Sublime\ Text\ 2/sublime_text /usr/bin/sublime
 
-# Configuring unity launcher
+echo "Configuring unity launcher"
 cat > ~/.local/share/applications/sublime.desktop <<END_DESKTOP
 [Desktop Entry]
 Version=1.0
@@ -54,6 +55,7 @@ Exec=sublime -n %U
 TargetEnvironment=Unity
 END_DESKTOP
 
+echo "Configuring preferences"
 cat > ~/.local/share/applications/defaults.list <<END_DEFAULTS
 [Default Applications]
 text/plain=sublime-text-2.desktop
@@ -82,3 +84,66 @@ application/x-perl=sublime-text-2.desktop
 x-directory/normal=sublime-text-2.desktop
 inode/directory=sublime-text-2.desktop
 END_DEFAULTS
+
+echo "$version was totally installed and configured in your computer."
+cat > welcome <<END_WELCOME
+THANK YOU FOR USING
+  ______  __    __ _______  __       ______ __       __ ________               
+ /      \/  |  /  /       \/  |     /      /  \     /  /        |              
+/@@@@@@  @@ |  @@ @@@@@@@  @@ |     @@@@@@/@@  \   /@@ @@@@@@@@/               
+@@ \__@@/@@ |  @@ @@ |__@@ @@ |       @@ | @@@  \ /@@@ @@ |__                  
+@@      \@@ |  @@ @@    @@<@@ |       @@ | @@@@  /@@@@ @@    |                 
+ @@@@@@  @@ |  @@ @@@@@@@  @@ |       @@ | @@ @@ @@/@@ @@@@@/                  
+/  \__@@ @@ \__@@ @@ |__@@ @@ |_____ _@@ |_@@ |@@@/ @@ @@ |_____               
+@@    @@/@@    @@/@@    @@/@@       / @@   @@ | @/  @@ @@       |              
+ @@@@@@/  @@@@@@/ @@@@@@@/ @@@@@@@@/@@@@@@/@@/      @@/@@@@@@@@/               
+ ______ __    __  ______  ________ ______  __       __       ________ _______  
+/      /  \  /  |/      \/        /      \/  |     /  |     /        /       \ 
+@@@@@@/@@  \ @@ /@@@@@@  @@@@@@@@/@@@@@@  @@ |     @@ |     @@@@@@@@/@@@@@@@  |
+  @@ | @@@  \@@ @@ \__@@/   @@ | @@ |__@@ @@ |     @@ |     @@ |__   @@ |__@@ |
+  @@ | @@@@  @@ @@      \   @@ | @@    @@ @@ |     @@ |     @@    |  @@    @@< 
+  @@ | @@ @@ @@ |@@@@@@  |  @@ | @@@@@@@@ @@ |     @@ |     @@@@@/   @@@@@@@  |
+ _@@ |_@@ |@@@@ /  \__@@ |  @@ | @@ |  @@ @@ |_____@@ |_____@@ |_____@@ |  @@ |
+/ @@   @@ | @@@ @@    @@/   @@ | @@ |  @@ @@       @@       @@       @@ |  @@ |
+@@@@@@/@@/   @@/ @@@@@@/    @@/  @@/   @@/@@@@@@@@/@@@@@@@@/@@@@@@@@/@@/   @@/ 
+                                                                               
+                                                                               
+AFTER ASCII ART APPRECIATION:
+ ____ __   ____  __  ____ ____     
+(  _ (  ) (  __)/  \/ ___|  __)_   
+ ) __/ (_/\) _)/  o \___ \) _)( )  
+(__) \____(____)_/\_(____(____|/   
+  ___ __    __  ____ ____          
+ / __|  )  /  \/ ___|  __)         
+( (__/ (_/(  O )___ \) _)          
+ \___)____/\__/(____(____)         
+ ____ _  _ ____ __   __ _  _ ____  
+/ ___) )( (  _ (  ) (  | \/ |  __) 
+\___ ) \/ () _ ( (_/\)(/ \/ \) _)  
+(____|____(____|____(__)_)(_(____)  
+                                             
+                                             
+SUBLIME TIPS & TRICKS: http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/
+COOL ASCII ART:        http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
+STAR OR FORK ME:       https://github.com/waldyr/Sublime-Installer
+END_WELCOME
+sublime welcome
+rm welcome
+
+echo "Would you like a $version better icon [y/n]?"
+read img
+if [ $img = y -o $img = Y -o $img = yes -o $img = Yes -o $img = YES ] ; then
+  wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/sublime_text.png -qNO /opt/Sublime\ Text\ 2/Icon/256x256/sublime_text.png
+fi
+
+echo "Would you like $version Zen Coding plugin [y/n]?"
+read zcplugin
+if [ $zcplugin = y -o $zcplugin = Y -o $zcplugin = yes -o $zcplugin = Yes -o $zcplugin = YES ] ; then
+  wget --no-check-certificate https://nodeload.github.com/sublimator/ZenCoding/zipball/master -qNP /tmp/
+  unzip -q /tmp/master
+  sudo cp -aR /tmp/sublimator-ZenCoding* ~/.config/sublime-text-2/Packages/
+  rm /tmp/master
+fi
+
+echo
+echo "$version was totally installed and configured in your computer."
