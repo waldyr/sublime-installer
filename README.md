@@ -1,5 +1,7 @@
 ## Sublime Installer
 
+[Versão PT-BT](https://github.com/waldyr/Sublime-Installer/wiki)
+
 Sublime Installer is a simple script for Sublime Text Editor auto setup. It gives you:
   * Sublime 2.0.1 Text Editor
   * Head-Up Display (HUD)
