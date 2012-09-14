@@ -9,13 +9,11 @@
 echo "#######################################"
 echo "########## Sublime Installer ##########"
 echo "#######################################"
-
 echo
-
-version="Sublime 2.0.1"
 
 cd /tmp
 
+version="Sublime 2.0.1"
 krnl=$(uname -i)
 
 echo "Downloading $version, please wait..."
@@ -130,19 +128,26 @@ END_WELCOME
 sublime welcome
 rm welcome
 
+echo
 echo "Would you like a $version better icon [y/n]?"
 read img
 if [ $img = y -o $img = Y -o $img = yes -o $img = Yes -o $img = YES ] ; then
+  echo "Downloading $version custom icon, please wait..."
   wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/sublime_text.png -qNO /opt/Sublime\ Text\ 2/Icon/256x256/sublime_text.png
+  echo "Custom icon applied with success"
 fi
 
+echo
 echo "Would you like $version Zen Coding plugin [y/n]?"
 read zcplugin
 if [ $zcplugin = y -o $zcplugin = Y -o $zcplugin = yes -o $zcplugin = Yes -o $zcplugin = YES ] ; then
+  echo "Downloading Zen Coding, please wait..."
   wget --no-check-certificate https://nodeload.github.com/sublimator/ZenCoding/zipball/master -qNP /tmp/
   unzip -q /tmp/master
   sudo cp -aR /tmp/sublimator-ZenCoding* ~/.config/sublime-text-2/Packages/
   rm /tmp/master
+  rm -r /tmp/sublimator-ZenCoding*
+  echo "Zen Coding applied with success"
 fi
 
 echo

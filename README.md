@@ -26,9 +26,6 @@ wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/mast
 
 Downloading Sublime 2.0.1, please wait...
 Extracting Sublime 2.0.1, please wait...
-
-[sudo] password for computer: 
-
 Creating Sublime 2.0.1 terminal shortcut
 Configuring unity launcher
 Configuring preferences
@@ -36,9 +33,15 @@ Sublime 2.0.1 was totally installed and configured in your computer.
 
 Would you like a Sublime 2.0.1 better icon [y/n]?
 # Type 'y' if you want a better icon else type 'n'. Then press enter.
+Downloading Sublime 2.0.1 custom icon, please wait...
+Custom icon applied with success
 
 Would you like Sublime 2.0.1 Zen Coding plugin [y/n]?
 # Type 'y' if you want Zen Coding else type 'n'. Then press enter.
+Downloading Zen Coding, please wait...
+Zen Coding applied with success
+
+Sublime 2.0.1 was totally installed and configured in your computer.
 ````
 
 
@@ -47,15 +50,17 @@ Would you like Sublime 2.0.1 Zen Coding plugin [y/n]?
 ````
 wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/uninstall_sublime.sh && bash uninstall_sublime.sh
 
-########################################
-########## Sublime Unistaller ##########
-########################################
+##########################################
+########## Sublime Uninstaller ###########
+##########################################
 
 Removing Sublime 2.0.1 folder
 Removing Sublime 2.0.1 configuration files
 Removing Sublime 2.0.1 unity configuration
 Removing Sublime 2.0.1 shortcut
 Removing defaults.list's affected lines by Sublime 2.0.1
+
+Sublime 2.0.1 was totally removed from your computer!
 ````
 
 ## Additional Information
