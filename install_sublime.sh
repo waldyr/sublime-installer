@@ -11,10 +11,14 @@ echo "########## Sublime Installer ##########"
 echo "#######################################"
 echo
 
-cd /tmp
-
 version="Sublime 2.0.1"
 krnl=$(uname -i)
+instdir="$(pwd)/"
+if [ -n "$1" ] ; then
+  instdir=$1
+fi
+
+cd /tmp
 
 echo "Downloading $version, please wait..."
 if [ $krnl = 'i386' ] ; then
@@ -25,11 +29,11 @@ fi
 
 echo "Extracting $version, please wait..."
 tar xjf /tmp/Sublime*.tar.bz2
-sudo cp -aR /tmp/Sublime\ Text\ 2 /opt/
+sudo cp -aR /tmp/Sublime\ Text\ 2 "$instdir"
 
 echo "Creating $version terminal shortcut"
 rm -r /tmp/Sublime\ Text\ 2*
-sudo ln -sf /opt/Sublime\ Text\ 2/sublime_text /usr/bin/sublime
+sudo ln -sf "$instdir/Sublime Text 2/sublime_text" /usr/bin/sublime
 
 echo "Configuring unity launcher"
 cat > ~/.local/share/applications/sublime.desktop <<END_DESKTOP
@@ -40,7 +44,7 @@ Name=Sublime Text 2
 GenericName=Text Editor
 Comment=Sublime Text Editor
 Exec=sublime -w %U
-Icon=/opt/Sublime Text 2/Icon/256x256/sublime_text.png
+Icon=${instdir}Sublime Text 2/Icon/256x256/sublime_text.png
 Terminal=false
 Type=Application
 Categories=GNOME;Application;GTK;Utility;TextEditor;IDE;Development
@@ -133,8 +137,19 @@ echo "Would you like a $version better icon [y/n]?"
 read img
 if [ $img = y -o $img = Y -o $img = yes -o $img = Yes -o $img = YES ] ; then
   echo "Downloading $version custom icon, please wait..."
-  wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/sublime_text.png -qNO /opt/Sublime\ Text\ 2/Icon/256x256/sublime_text.png
+  wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/sublime_text.png -qNO "$instdir/Sublime Text 2/Icon/256x256/sublime_text.png"
   echo "Custom icon applied with success"
+fi
+
+echo
+echo "Would you like $version Package Control [y/n]?"
+read pcontrol
+if [ $pcontrol = y -o $pcontrol = Y -o $pcontrol = yes -o $pcontrol = Yes -o $pcontrol = YES ] ; then
+  echo "Downloading Package Control, please wait..."
+  wget http://sublime.wbond.net/Package%20Control.sublime-package -qNP /tmp/
+  unzip -q /tmp/Package\ Control.* -d ~/.config/sublime-text-2/Packages/
+  rm -r /tmp/Package\ Control.*
+  echo "Package Control applied with success"
 fi
 
 echo

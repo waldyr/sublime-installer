@@ -15,7 +15,7 @@ echo
 version="Sublime 2.0.1"
 
 echo "Removing $version folder"
-sudo rm -r /opt/Sublime\ Text\ 2/
+sudo rm -r "$1Sublime Text 2/"
 
 echo "Removing $version configuration files"
 sudo rm -r ~/.config/sublime-text-2/
