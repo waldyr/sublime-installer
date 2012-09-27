@@ -7,7 +7,7 @@ Sublime Installer is a simple script for Sublime Text Editor auto setup. It give
   * Unity Dashboard Icon
   * Terminal Shortcut
   * Sublime's Custom Icon
-  * Sublime Package Control
+  * Sublime's Plugin: Package Control
   * Sublime's Plugin: Zen Coding
 
 ### Distros supported:
@@ -18,12 +18,12 @@ Sublime Installer is a simple script for Sublime Text Editor auto setup. It give
 
 ### Usage
 Just type the following line on your terminal and let the script do the job for you!
-Unless you pass a directory to install sublime, the script will install Sublime at the current directory.
-_If you want to pass a spaced folder's name see [troubleshooting section](https://github.com/waldyr/Sublime-Installer/edit/master/README.md#troubleshooting)_
+Unless you pass a directory to install sublime, the script will install Sublime at /lib/ directory.
+_Problems?! Please take a look at [troubleshooting section](https://github.com/waldyr/Sublime-Installer/edit/master/README.md#troubleshooting)_
 
 ````
 $ wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/install_sublime.sh
-$ bash install_sublime.sh /opt/ # If blank then current dir
+$ bash install_sublime.sh /opt/ # If blank then /lib/
 #######################################
 ########## Sublime Installer ##########
 #######################################
@@ -49,13 +49,12 @@ Would you like Sublime 2.0.1 Zen Coding plugin [y/n]?
 y
 Downloading Zen Coding, please wait...
 Zen Coding applied with success
-
 ````
 
 
 ### Uninstalling
 If you don't wanna use Sublime anymore there is an uninstall script too!
-You just need to pass the Sublime's directory to script
+You just need to pass the Sublime's directory to script, if it isn't in /lib/.
 
 ````
 $ wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/uninstall_sublime.sh
@@ -75,22 +74,22 @@ Sublime 2.0.1 was totally removed from your computer!
 
 ## Troubleshooting
 
-### Pass spaced folder's name
-````
-$ bash install_sublime.sh "home/you/and/complete/path/to/a folder/"
-````
-````
-$ bash uninstall_sublime.sh "home/you/and/complete/path/to/a folder/"
-````
-
 ### Not appearing the custom image
 Reboot. If persists reboot again. If still persists start an issue [here](https://github.com/waldyr/Sublime-Installer/issues/new)
 
+
 ## Additional Information
 
-### Zen Coding Repo
+### Suggestions or Contributions
+You can freely email me, if happened anything unexpected or it works like a charm or also give me suggestions. I'll answer you ASAP with the due respect!
+For contributions, I will analyze if your pull request is within the scope and the minimum correctness, furthermore you will be added in the contributors section, that by the way is empty.
 
+### Sublime Package Control
+http://wbond.net/sublime_packages/package_control
+
+### Zen Coding
 https://github.com/sublimator/ZenCoding
+http://www.youtube.com/watch?v=Q_D7X1Y8uOA
 
 ### Sublime's custom image
 <p align="center">

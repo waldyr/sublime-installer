@@ -13,7 +13,7 @@ echo
 
 version="Sublime 2.0.1"
 krnl=$(uname -i)
-instdir="$(pwd)/"
+instdir="/lib/"
 if [ -n "$1" ] ; then
   instdir=$1
 fi
@@ -33,7 +33,7 @@ sudo cp -aR /tmp/Sublime\ Text\ 2 "$instdir"
 
 echo "Creating $version terminal shortcut"
 rm -r /tmp/Sublime\ Text\ 2*
-sudo ln -sf "$instdir/Sublime Text 2/sublime_text" /usr/bin/sublime
+sudo ln -sf "${instdir}Sublime Text 2/sublime_text" /usr/bin/sublime
 
 echo "Configuring unity launcher"
 cat > ~/.local/share/applications/sublime.desktop <<END_DESKTOP
@@ -137,7 +137,7 @@ echo "Would you like a $version better icon [y/n]?"
 read img
 if [ $img = y -o $img = Y -o $img = yes -o $img = Yes -o $img = YES ] ; then
   echo "Downloading $version custom icon, please wait..."
-  wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/sublime_text.png -qNO "$instdir/Sublime Text 2/Icon/256x256/sublime_text.png"
+  wget --no-check-certificate https://raw.github.com/waldyr/Sublime-Installer/master/sublime_text.png -qNO "${instdir}Sublime Text 2/Icon/256x256/sublime_text.png"
   echo "Custom icon applied with success"
 fi
 
@@ -164,6 +164,3 @@ if [ $zcplugin = y -o $zcplugin = Y -o $zcplugin = yes -o $zcplugin = Yes -o $zc
   rm -r /tmp/sublimator-ZenCoding*
   echo "Zen Coding applied with success"
 fi
-
-echo
-echo "$version was totally installed and configured in your computer."
