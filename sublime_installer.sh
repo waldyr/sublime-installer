@@ -1,5 +1,6 @@
 #!/bin/bash
 
+shopt -s nocaseglob
 set -e
 
 script_runner=$(whoami) 
