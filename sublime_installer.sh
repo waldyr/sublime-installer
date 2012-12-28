@@ -64,5 +64,3 @@ wget --no-check-certificate -O $sublime_installer_path/src/$distro.sh https://ra
 echo -e "\n#################################"
 echo    "### Installation is complete! ###"
 echo -e "#################################\n"
-
-echo -e "\n !!! logout and back in to access Sublime !!!\n"
