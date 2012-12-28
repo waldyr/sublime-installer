@@ -4,6 +4,7 @@ script_runner=$(whoami)
 sublime_installer_path=$1
 log_file=$2
 
+# Determine which sublime the user want
 echo "Install as ppa or download portable version?"
 echo "=> 1. Portable version"
 echo "=> 2. PPA version"
@@ -12,6 +13,7 @@ read whichSublime
 
 if [[ $whichSublime -eq 1 ]] ; then
 
+  # Determine whether is 64 or 32
   krnl=$(uname -i)
   echo -e "\n=> Downloading Sublime Text Editor 2..."
   if [[ $krnl = 'i386' ]] ; then
@@ -22,11 +24,11 @@ if [[ $whichSublime -eq 1 ]] ; then
   echo -e "==> done..."
 
   echo -e "\n=> Extracting..."
-  tar xjf $sublime_installer_path/src/Sublime*.tar.bz2 >> $log_file 2>&1
+  tar -C $sublime_installer_path -xjf $sublime_installer_path/src/Sublime*.tar.bz2 >> $log_file 2>&1
   echo -e "==> done..."
 
-  echo -e "\n=> Creating a folder in $sublime_installer_path..."
-  sudo cp -aR $sublime_installer_path/src/Sublime\ Text\ 2 $sublime_installer_path >> $log_file 2>&1
+  echo -e "\n=> Creating symbolic link..."
+  sudo ln -s $sublime_installer_path/Sublime\ Text\ 2/sublime_text /usr/local/bin/sublime-text >> $log_file 2>&1
   echo -e "==> done..."
 
 elif [[ $whichSublime -eq 2 ]] ; then
@@ -47,10 +49,6 @@ elif [[ $whichSublime -eq 2 ]] ; then
   sudo apt-get install sublime-text >> $log_file 2>&1
   echo -e "==> done..."
 
-  echo -e "\n=> Creating symbolic link..."
-  sudo ln -s $sublime_installer_path/Sublime\ Text\ 2/sublime_text ./sublime
-  echo -e "==> done..."
-
 else
 
   echo -e "\n\n!!! You must choose between PPA or Portable version !!!"
@@ -58,6 +56,7 @@ else
 
 fi
 
+# Create .config folder opening welcome file
 cat > welcome <<END_WELCOME
 THANK YOU FOR USING
   ______  __    __ _______  __       ______ __       __ ________               
@@ -97,8 +96,36 @@ AFTER ASCII ART APPRECIATION:
                                              
 SUBLIME TIPS & TRICKS: http://net.tutsplus.com/tutorials/tools-and-tips/sublime-text-2-tips-and-tricks/
 COOL ASCII ART:        http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
-STAR OR FORK ME:       https://github.com/waldyr/Sublime-Installer
 END_WELCOME
 
-sublime welcome
+sublime-text welcome
 rm welcome
+
+# Ask for Package Control
+echo
+echo -n "Would you like the Package Control plugin [y/n]? "
+read pcontrol
+if [ $pcontrol = y -o $pcontrol = Y -o $pcontrol = yes -o $pcontrol = Yes -o $pcontrol = YES ] ; then
+
+  echo -e "\n=> Downloading Package Control..."
+  wget http://sublime.wbond.net/Package%20Control.sublime-package -NP $sublime_installer_path/src >> $log_file 2>&1
+  echo -e "==> done..."
+
+  echo -e "\n=> Unzipping Package Control..."
+  cp $sublime_installer_path/src/Package* ~/.config/sublime-text-2/Installed\ Packages/ >> $log_file 2>&1
+  echo -e "==> done..."
+fi
+
+# Ask for Emmet
+echo
+echo -n "Would you like the Emmet plugin [y/n]? "
+read zcplugin
+if [ $zcplugin = y -o $zcplugin = Y -o $zcplugin = yes -o $zcplugin = Yes -o $zcplugin = YES ] ; then
+  echo -e "\n=> Downloading Emmet..."
+  wget --no-check-certificate https://github.com/sergeche/emmet-sublime/archive/master.zip -NP $sublime_installer_path/src >> $log_file 2>&1
+  echo -e "==> done..."
+
+  echo -e "\n=> Unzipping Emmet..."
+  unzip -o $sublime_installer_path/src/master -d ~/.config/sublime-text-2/Packages/ >> $log_file 2>&1
+  echo -e "==> done..."
+fi

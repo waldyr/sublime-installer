@@ -46,7 +46,7 @@ echo "What this script gets you:"
 echo " * Sublime Text Editor"
 echo " * Sublime's Custom Icon"
 echo " * Package Control"
-echo " * Zen Coding"
+echo " * Emmet (Old Zen Coding)"
 
 echo -e "\nThis script is always changing."
 echo "Make sure you got it from https://github.com/waldyr/Sublime-Installer"
