@@ -16,10 +16,10 @@ if [[ $whichSublime -eq 1 ]] ; then
   # Determine whether is 64 or 32
   krnl=$(uname -i)
   echo -e "\n=> Downloading Sublime Text Editor 2..."
-  if [[ $krnl = 'i386' ]] ; then
-    wget -NP $sublime_installer_path/src http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.tar.bz2 >> $log_file 2>&1
-  else
+  if [[ $krnl = 'x86_64' ]] ; then
     wget -NP $sublime_installer_path/src http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2 >> $log_file 2>&1
+  else
+    wget -NP $sublime_installer_path/src http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.tar.bz2 >> $log_file 2>&1
   fi
   echo -e "==> done..."
 
