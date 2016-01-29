@@ -1,4 +1,4 @@
-## Sublime Installer
+## Sublime Installer (Not maintained anymore)
 
 Sublime Installer is a simple script for Sublime Text Editor auto setup. It gives you:
   * Sublime 2.0.1 Text Editor
